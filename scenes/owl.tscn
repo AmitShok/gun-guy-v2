@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://bm46qybrm5o6s"]
+
+[ext_resource type="Script" uid="uid://dq18ncekra3y7" path="res://scripts/owl.gd" id="1_5aqbm"]
+[ext_resource type="Texture2D" uid="uid://bmwx8hfrc5lqn" path="res://assets/Sprite Pack 4/7 - Orchid_Owl_Flying (32 x 32).png" id="2_exhi5"]
+[ext_resource type="Texture2D" uid="uid://dx8sqws3d0x4x" path="res://assets/Sprite Pack 4/7 - Orchid_Owl_Hurt (32 x 32).png" id="2_pyidr"]
+[ext_resource type="Script" uid="uid://d3wls71us5mxc" path="res://scripts/hurtbox.gd" id="2_ri17u"]
+[ext_resource type="PackedScene" uid="uid://cy16yikjog7f7" path="res://scenes/killzone.tscn" id="2_xb3yo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tuxou"]
+size = Vector2(9, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exhi5"]
+atlas = ExtResource("2_pyidr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb3yo"]
+atlas = ExtResource("2_exhi5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuxou"]
+atlas = ExtResource("2_exhi5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dawt"]
+atlas = ExtResource("2_exhi5")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pyidr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exhi5")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xb3yo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuxou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dawt")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5aqbm"]
+size = Vector2(10, 16)
+
+[node name="owl" type="Node2D" unique_id=2117058973 groups=["enemies"]]
+script = ExtResource("1_5aqbm")
+
+[node name="Killzone" parent="." unique_id=941125003 instance=ExtResource("2_xb3yo")]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=300117200]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_tuxou")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2094385629 groups=["enemies"]]
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_pyidr")
+animation = &"hit"
+autoplay = "idle"
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1819863060]
+position = Vector2(0, -6)
+target_position = Vector2(10, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=1581349721]
+position = Vector2(0, -6)
+target_position = Vector2(-10, 0)
+
+[node name="hurtbox" type="Area2D" parent="." unique_id=521407748 groups=["enemies"]]
+script = ExtResource("2_ri17u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=1799817837 groups=["enemies"]]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_5aqbm")
+
+[connection signal="area_shape_entered" from="hurtbox" to="." method="_on_hurtbox_area_shape_entered"]

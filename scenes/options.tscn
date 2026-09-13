@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/options.gd" id="1_options"]
+[ext_resource type="Texture2D" uid="uid://dksgcvrjxtqku" path="res://assets/UI/Paper UI/Bars/BackgroundBarhealthFill.png" id="2_blue_bar"]
+[ext_resource type="Texture2D" uid="uid://b6yr067qbxh7j" path="res://assets/UI/Paper UI/Backgrounds/BackgroundSaveMenu.png" id="3_paper_background"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 26
+outline_size = 18
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Options" type="Node2D"]
+script = ExtResource("1_options")
+
+[node name="BackgroundBarhealthFill" type="Sprite2D" parent="."]
+position = Vector2(563.49994, 387.50003)
+scale = Vector2(4.480198, 7.3943667)
+texture = ExtResource("2_blue_bar")
+
+[node name="BackgroundSaveMenu" type="Sprite2D" parent="."]
+position = Vector2(566.5, 387)
+scale = Vector2(0.57039475, 0.40669453)
+texture = ExtResource("3_paper_background")
+
+[node name="Button_manager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MusicLabel" type="Label" parent="Button_manager"]
+layout_mode = 0
+offset_left = 314.0
+offset_top = 346.0
+offset_right = 800.0
+offset_bottom = 393.0
+theme_override_colors/font_color = Color(0.08, 0.08, 0.08, 1)
+theme_override_font_sizes/font_size = 22
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="Button_manager"]
+layout_mode = 0
+offset_left = 367.0
+offset_top = 407.0
+offset_right = 747.0
+offset_bottom = 431.0
+max_value = 100.0
+step = 1.0
+value = 100.0
+
+[node name="VolumeValue" type="Label" parent="Button_manager"]
+layout_mode = 0
+offset_left = 314.0
+offset_top = 442.0
+offset_right = 800.0
+offset_bottom = 473.0
+theme_override_colors/font_color = Color(0.08, 0.08, 0.08, 1)
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="Button_manager"]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 510.0
+offset_right = 702.0
+offset_bottom = 581.0
+theme_override_font_sizes/font_size = 20
+text = "back"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(566, 387)
+zoom = Vector2(1.33, 1.33)
+limit_left = -9999938
+limit_top = -9999435
+limit_right = 10000062
+limit_bottom = 695
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="Title" type="Label" parent="."]
+offset_left = 357.0
+offset_top = 168.0
+offset_right = 756.0
+offset_bottom = 290.0
+text = "OPTIONS"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="value_changed" from="Button_manager/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="pressed" from="Button_manager/Back" to="." method="_on_back_pressed"]

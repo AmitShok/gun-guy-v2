@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://0beoxq7cfol3"]
+
+[ext_resource type="Script" uid="uid://c63x63rvby8sr" path="res://scripts/levels_menu.gd" id="1_5vuwt"]
+[ext_resource type="Texture2D" uid="uid://dksgcvrjxtqku" path="res://assets/UI/Paper UI/Bars/BackgroundBarhealthFill.png" id="1_grwcp"]
+[ext_resource type="Texture2D" uid="uid://b6yr067qbxh7j" path="res://assets/UI/Paper UI/Backgrounds/BackgroundSaveMenu.png" id="2_5vuwt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_250ps"]
+font_size = 35
+outline_size = 18
+outline_color = Color(0, 0, 0, 1)
+
+[node name="LevelsMenu" type="Node2D"]
+script = ExtResource("1_5vuwt")
+
+[node name="BackgroundBarhealthFill" type="Sprite2D" parent="."]
+position = Vector2(563.49994, 387.50003)
+scale = Vector2(4.480198, 7.3943667)
+texture = ExtResource("1_grwcp")
+
+[node name="BackgroundSaveMenu" type="Sprite2D" parent="."]
+position = Vector2(566.5, 387)
+scale = Vector2(0.57039475, 0.40669453)
+texture = ExtResource("2_5vuwt")
+
+[node name="Button_manager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Level1" type="Button" parent="Button_manager"]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 306.0
+offset_right = 481.0
+offset_bottom = 398.0
+text = "gun-guy"
+
+[node name="Level2" type="Button" parent="Button_manager"]
+layout_mode = 0
+offset_left = 591.0
+offset_top = 303.0
+offset_right = 861.0
+offset_bottom = 398.0
+text = "sword-dude"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(566, 387)
+zoom = Vector2(1.33, 1.33)
+limit_left = -9999938
+limit_top = -9999435
+limit_right = 10000062
+limit_bottom = 695
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 344.0
+offset_top = 193.0
+offset_right = 754.0
+offset_bottom = 261.0
+text = "PICK HERO !"
+label_settings = SubResource("LabelSettings_250ps")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Button_manager/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Button_manager/Level2" to="." method="_on_level_2_pressed"]

@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsyg70qtv8g0v"]
+
+[ext_resource type="Script" uid="uid://c2b17377gk38d" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://dksgcvrjxtqku" path="res://assets/UI/Paper UI/Bars/BackgroundBarhealthFill.png" id="2_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://b6yr067qbxh7j" path="res://assets/UI/Paper UI/Backgrounds/BackgroundSaveMenu.png" id="2_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://c6eqthk2ewrwv" path="res://assets/UI/FreeModern/Adobe Express - file.png" id="4_wu84c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wu84c"]
+font_size = 26
+outline_size = 18
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Main Menu" type="Node2D"]
+script = ExtResource("1_l6cm7")
+
+[node name="BackgroundBarhealthFill" type="Sprite2D" parent="."]
+position = Vector2(563.49994, 387.50003)
+scale = Vector2(4.480198, 7.3943667)
+texture = ExtResource("2_bqqt6")
+
+[node name="BackgroundSaveMenu" type="Sprite2D" parent="."]
+position = Vector2(566.5, 387)
+scale = Vector2(0.57039475, 0.40669453)
+texture = ExtResource("2_ekxnf")
+
+[node name="Button_manager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Start" type="TextureButton" parent="Button_manager"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 388.0
+offset_top = 207.0
+offset_right = 1412.0
+offset_bottom = 1191.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="Button_manager/Start"]
+position = Vector2(484, 536)
+texture = ExtResource("4_wu84c")
+
+[node name="Options" type="Button" parent="Button_manager"]
+layout_mode = 0
+offset_left = 314.0
+offset_top = 421.0
+offset_right = 800.0
+offset_bottom = 513.0
+text = "options"
+
+[node name="Quit" type="Button" parent="Button_manager"]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 525.0
+offset_right = 702.0
+offset_bottom = 596.0
+text = "quit"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(566, 387)
+zoom = Vector2(1.33, 1.33)
+limit_left = -9999938
+limit_top = -9999435
+limit_right = 10000062
+limit_bottom = 695
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 357.0
+offset_top = 142.0
+offset_right = 756.0
+offset_bottom = 295.0
+text = "GUN - GUY
+&
+SWORD - DUDE"
+label_settings = SubResource("LabelSettings_wu84c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Button_manager/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Button_manager/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Button_manager/Quit" to="." method="_on_quit_pressed"]
